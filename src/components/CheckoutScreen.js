@@ -22,9 +22,7 @@ export default function CheckoutScreen() {
         `http://192.168.0.102/stripe-backend/public/api/make-payment-mobile`,
         axiosConfig,
       )
-      .then(res => {
-        return res.data;
-      });
+      .then(res => res.data);
     return result;
   };
 
@@ -35,10 +33,8 @@ export default function CheckoutScreen() {
       customerId: customer,
       customerEphemeralKeySecret: ephemeralKey,
       paymentIntentClientSecret: paymentIntent,
-      // Set `allowsDelayedPaymentMethods` to true if your business can handle payment
-      //methods that complete payment after a delay, like SEPA Debit and Sofort.
       allowsDelayedPaymentMethods: true,
-      merchantDisplayName: 'TFP',
+      merchantDisplayName: 'Hellosuperstars',
     });
     if (!error) {
       setLoading(true);
@@ -51,7 +47,7 @@ export default function CheckoutScreen() {
     if (error) {
       Alert.alert(`Error code: ${error.code}`, error.message);
     } else {
-      Alert.alert('Success', 'Your order is confirmed!');
+      Alert.alert('Success', 'Your payment successfully done!');
     }
   };
 
